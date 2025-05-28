@@ -2,7 +2,7 @@
 <suite name="QkartAutomationSuite">
     <test name="LoginTests">
         <classes>
-            <class name="StepDefinitionFile.QkartLogin"/>
+            <class name="StepDefinationFile.QkartLogin"/>
         </classes>
     </test>
 </suite>
