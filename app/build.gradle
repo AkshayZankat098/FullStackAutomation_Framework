@@ -27,6 +27,9 @@ dependencies {
 
     // Add WebDriverManager to manage browser drivers automatically
     implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
+    
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -42,6 +45,14 @@ application {
 }
 
 tasks.named('test') {
-    // Use TestNG for unit tests.
-    useTestNG()
+    // Use TestNG for unit tests and specify the testng.xml file
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+    }
+
+    // Enable test output in the console
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        showStandardStreams = true
+    }
 }
