@@ -4,9 +4,8 @@
     <test name="LoginTests">
         <classes>
 
-            <class name="StepDefinationFile.QkartLogin"/>
-            <class name="StepDefinationFile.QkartSearchbox"/>
-
+            <class name="StepDefinationFile.AmazonTest"/>
+            
         </classes>
     </test>
 </suite>
