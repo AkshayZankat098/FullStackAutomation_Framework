@@ -28,8 +28,6 @@ dependencies {
     // Add WebDriverManager to manage browser drivers automatically
     implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
     implementation 'ch.qos.logback:logback-classic:1.4.14'
-    
-
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -63,4 +61,5 @@ tasks.named('test') {
         events "passed", "skipped", "failed", "standardOut", "standardError"
         showStandardStreams = true
     }
+
 }
