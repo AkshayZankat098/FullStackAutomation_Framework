@@ -44,6 +44,14 @@ application {
     mainClass = 'qkart.automation.App'
 }
 
+test {
+    testLogging {
+        showStandardStreams = true
+        events "passed", "failed", "skipped"
+    }
+}
+
+
 tasks.named('test') {
     // Use TestNG for unit tests and specify the testng.xml file
     useTestNG() {
