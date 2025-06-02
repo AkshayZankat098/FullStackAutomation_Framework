@@ -4,7 +4,10 @@
     <test name="LoginTests">
         <classes>
 
-            <class name="StepDefinationFile.FlipkartTest"/>
+            <!-- <class name="StepDefinationFile.QkartAutomation.QkartLogin"/>   
+            <class name="StepDefinationFile.QkartAutomation.QkartSearchbox"/> -->
+            <class name="StepDefinationFile.FlipkartAutomation.FlipkartTest"/>
+            
             
         </classes>
     </test>

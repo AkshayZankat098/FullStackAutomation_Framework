@@ -45,8 +45,18 @@ public class PageObject_Flipkart {
             System.out.println(productName + " :: " + ActualPrice);
         }
 
-        System.err.println("Total Products Found: " + productList.size());
+        System.err.println("Total Products Found: " + productList.size());   
         System.err.println("Total Prices Found: " + productPrice.size());
+    }
+
+    //Wrapper method to click element
+    public static void clickElement(WebElement element) {
+        element.click();
+    }
+
+    //Wrapper method to get text
+    public static String getText(WebElement element) {
+        return element.getText();
     }
 
 }

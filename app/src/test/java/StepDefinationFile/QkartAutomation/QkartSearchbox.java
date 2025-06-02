@@ -1,4 +1,4 @@
-package StepDefinationFile;
+package StepDefinationFile.QkartAutomation;
 
 import org.testng.annotations.Test;
 

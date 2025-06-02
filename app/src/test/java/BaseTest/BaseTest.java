@@ -16,7 +16,7 @@ public class BaseTest {
     protected PageObject_QkartLogin loginPage;          // ✅ Accessible to child test classes
     protected PageObject_Registration registration;     // ✅ Accessible to child test classes
     protected PageObject_Searchbox searchbox;           // ✅ Accessible to child test classes    
-    protected PageObject_Flipkart flipkart;
+    protected PageObject_Flipkart flipkart;             // ✅ Accessible to child test classes
 
     public void initializeBrowserAndPage() {
 
