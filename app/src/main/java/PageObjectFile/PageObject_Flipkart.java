@@ -2,6 +2,7 @@ package PageObjectFile;
 
 import java.util.List;
 
+import org.checkerframework.checker.units.qual.t;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,12 @@ public class PageObject_Flipkart {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement Click_search;
 
+    @FindBy(xpath = "//div[text()='Popularity']")
+    private WebElement Popularity;
+
+    @FindBy(xpath = "//span[contains(@id,'productRating')]//div[text()<= 4.0]")
+    private List<WebElement> ratingElements;
+
     // Constructor
     public PageObject_Flipkart(WebDriver driver) {
         this.driver = driver;
@@ -26,9 +33,19 @@ public class PageObject_Flipkart {
     }
 
     //Page Java_Selenium Methods/Logic Actions
-    public void Search_Case(String ProductName) {
+    public void TestCase01(String ProductName) {
         search.sendKeys(ProductName);
         Click_search.click();
+        String searchText = search.getAttribute("value");
+        System.out.println(searchText);
+
+        if (searchText.contains("Washing Machine")) {
+            System.out.println("Typed Washing Machine into search box");
+        }
+
+        Popularity.click();
+        System.out.println("Number of rating elements <= 4.0 : " + ratingElements.size());
+
     }
 
     public void GetTen_Product() {
@@ -45,7 +62,7 @@ public class PageObject_Flipkart {
             System.out.println(productName + " :: " + ActualPrice);
         }
 
-        System.err.println("Total Products Found: " + productList.size());   
+        System.err.println("Total Products Found: " + productList.size());
         System.err.println("Total Prices Found: " + productPrice.size());
     }
 

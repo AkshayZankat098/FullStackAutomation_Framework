@@ -4,11 +4,16 @@
     <test name="LoginTests">
         <classes>
 
-            <!-- <class name="StepDefinationFile.QkartAutomation.QkartLogin"/>   
-            <class name="StepDefinationFile.QkartAutomation.QkartSearchbox"/> -->
-            <class name="StepDefinationFile.FlipkartAutomation.FlipkartTest"/>
-            
-            
+            <class name="StepDefinationFile.FlipkartAutomation.FlipkartTest">
+
+                <methods>
+
+                    <include name="TestCase01"/>
+
+                </methods>
+                
+            </class>
+
         </classes>
     </test>
 </suite>

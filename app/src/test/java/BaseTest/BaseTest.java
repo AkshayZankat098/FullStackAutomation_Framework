@@ -30,6 +30,13 @@ public class BaseTest {
         searchbox = new PageObject_Searchbox(driver);
         flipkart = new PageObject_Flipkart(driver);
 
+        driver.get("https://www.flipkart.com/");
+        String CurrentURL = driver.getCurrentUrl();
+        
+        if (CurrentURL.contains("flipkart")) {
+            System.out.println("Navigated to the flipkart");
+        }
+
     }
 
     @AfterTest
