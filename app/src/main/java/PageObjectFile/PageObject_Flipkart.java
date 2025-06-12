@@ -2,7 +2,6 @@ package PageObjectFile;
 
 import java.util.List;
 
-import org.checkerframework.checker.units.qual.t;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -69,11 +68,13 @@ public class PageObject_Flipkart {
     //Wrapper method to click element
     public static void clickElement(WebElement element) {
         element.click();
+        System.out.println("TestDone");
     }
 
     //Wrapper method to get text
     public static String getText(WebElement element) {
         return element.getText();
+
     }
 
 }
