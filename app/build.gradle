@@ -33,36 +33,40 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-application {
-    // Define the main class for the application.
-    mainClass = 'qkart.automation.App'
-}
-
-test {
-    testLogging {
-        showStandardStreams = true
-        events "passed", "failed", "skipped"
-    }
-}
-
-
-tasks.named('test') {
-    // Use TestNG for unit tests and specify the testng.xml file
-    useTestNG() {
-        suites 'src/test/resources/testng.xml'
+    // Apply a specific Java toolchain to ease working on different environments.
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
     }
 
-    // Enable test output in the console
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        showStandardStreams = true
+    application {
+        // Define the main class for the application.
+        mainClass = 'qkart.automation.App'
     }
 
-}
+    test {
+        testLogging {
+            showStandardStreams = true
+            events "passed", "failed", "skipped"
+        }
+    }
+
+    test {
+        useTestNG() {
+            suites 'src/test/resources/testng.xml'
+        }
+    }
+
+    tasks.named('test') {
+        // Use TestNG for unit tests and specify the testng.xml file
+        useTestNG() {
+            suites 'src/test/resources/testng.xml'
+        }
+
+        // Enable test output in the console
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+            showStandardStreams = true
+        }
+    }
