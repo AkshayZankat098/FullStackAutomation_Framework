@@ -4,7 +4,7 @@
     <test name="LoginTests">
         <classes>
 
-            <class name="StepDefinationFile.FlipkartAutomation.FlipkartTest">
+            <class name="StepDefinationFile.Practice.Practice">
 
                 <methods>
 

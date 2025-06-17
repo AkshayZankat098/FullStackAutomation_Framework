@@ -8,6 +8,7 @@ import PageObjectFile.PageObject_Flipkart;
 import PageObjectFile.PageObject_QkartLogin;
 import PageObjectFile.PageObject_Registration;
 import PageObjectFile.PageObject_Searchbox;
+import PageObjectFile.Practice_POM;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -17,6 +18,7 @@ public class BaseTest {
     protected PageObject_Registration registration;     // ✅ Accessible to child test classes
     protected PageObject_Searchbox searchbox;           // ✅ Accessible to child test classes    
     protected PageObject_Flipkart flipkart;             // ✅ Accessible to child test classes
+    protected Practice_POM practice;
 
     public void initializeBrowserAndPage() {
 
@@ -29,13 +31,7 @@ public class BaseTest {
         registration = new PageObject_Registration(driver);
         searchbox = new PageObject_Searchbox(driver);
         flipkart = new PageObject_Flipkart(driver);
-
-        driver.get("https://www.flipkart.com/");
-        String CurrentURL = driver.getCurrentUrl();
-        
-        if (CurrentURL.contains("flipkart")) {
-            System.out.println("Navigated to the flipkart");
-        }
+        practice = new Practice_POM(driver);
 
     }
 
@@ -43,5 +39,4 @@ public class BaseTest {
     public void CloseBrowser() {
         driver.quit();
     }
-
 }

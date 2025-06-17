@@ -5,33 +5,35 @@
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.8/userguide/building_java_projects.html in the Gradle documentation.
  */
 
-plugins {
-    // Apply the application plugin to add support for building a CLI application in Java.
-    id 'application'
-}
+    plugins {
+        // Apply the application plugin to add support for building a CLI application in Java.
+        id 'application'
+    }
 
-repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
-}
+    repositories {
+        // Use Maven Central for resolving dependencies.
+        mavenCentral()
+    }
 
-dependencies {
-    // Use TestNG framework, add to testImplementation to restrict calling test.useTestNG() below
-    testImplementation libs.testng
+    dependencies {
 
-    // This dependency is used by the application.
-    implementation libs.guava
+        // Use TestNG framework, add to testImplementation to restrict calling test.useTestNG() below
+        testImplementation libs.testng
 
-    // Add Selenium Java dependency for browser automation
-    implementation 'org.seleniumhq.selenium:selenium-java:4.25.0'
+        // This dependency is used by the application.
+        implementation libs.guava
 
-    // Add WebDriverManager to manage browser drivers automatically
-    implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
-    implementation 'ch.qos.logback:logback-classic:1.4.14'
+        // Add Selenium Java dependency for browser automation
+        implementation 'org.seleniumhq.selenium:selenium-java:4.25.0'
 
-    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
-    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
-}
+        // Add WebDriverManager to manage browser drivers automatically
+        implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+        implementation 'ch.qos.logback:logback-classic:1.4.14'
+
+        implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+        implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+
+    }
 
     // Apply a specific Java toolchain to ease working on different environments.
     java {
@@ -56,17 +58,11 @@ dependencies {
         useTestNG() {
             suites 'src/test/resources/testng.xml'
         }
-    }
-
-    tasks.named('test') {
-        // Use TestNG for unit tests and specify the testng.xml file
-        useTestNG() {
-            suites 'src/test/resources/testng.xml'
-        }
 
         // Enable test output in the console
         testLogging {
-            events "passed", "skipped", "failed", "standardOut", "standardError"
-            showStandardStreams = true
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                showStandardStreams = true
         }
     }
+
