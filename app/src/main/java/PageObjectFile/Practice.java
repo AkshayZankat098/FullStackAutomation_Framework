@@ -3,12 +3,12 @@ package PageObjectFile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class Practice_POM {
+public class Practice {
 
     private WebDriver driver;
 
     // Constructor
-    public Practice_POM(WebDriver driver) {
+    public Practice(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
