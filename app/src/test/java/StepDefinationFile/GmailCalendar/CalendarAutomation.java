@@ -4,178 +4,79 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import BaseTest.BaseTest;
+import org.testng.annotations.Test;
 
 public class CalendarAutomation extends BaseTest {
-    
-    public void testCase01 (){
 
-        System.out.println("Start Test case : TestCase01");
-        driver.get("https://calendar.google.com/");
-        String CurrentURL = driver.getCurrentUrl();
-        System.out.println(CurrentURL);
+    @Test
+    public void TestCase01 () {
 
-        if (CurrentURL.contains("calendar")) {
-            System.out.println("The URL of the Calendar homepage contains \"calendar\". :: TEST PASS");
-        } else {
-            System.out.println("The URL of the Calendar homepage not contains \"calendar\". :: TEST FAIL"); 
-        }
+//  TestCase01 : Verify Calendar Home Page
+//  Description: Verify the URL of the Google Calendar home page
+//  Test Steps :
+//         1) Navigate to Google Calendar ( https://calendar.google.com/ ).
+//         2) Verify that the current URL contains "calendar."
+//  Expected Result : The URL of the Calendar homepage contains "calendar".
 
-        System.out.println("End Test case : TestCase01");
-    }
-
-
-    public  void testCase02() throws InterruptedException{
-
-        System.out.println("Start Test case : TestCase02");
-        
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement MonthDropdown = driver.findElement(By.xpath("//button[contains(@class, 'AeBiU-LgbsSe') and contains(@jsname, 'jnPWCc')]"));
-        js.executeScript("arguments[0].click();", MonthDropdown);
-
-        Thread.sleep(2000);
-        WebElement Selectmonth = driver.findElement(By.xpath("//li[@role='menuitem' and @data-viewkey='month']//span[@class='RBHQF-ksKsZd']"));
-        js.executeScript("arguments[0].click();", Selectmonth);
-
-        Thread.sleep(2000);
-        WebElement MonthText = driver.findElement(By.xpath("//span[@class='AeBiU-vQzf8d' and normalize-space(text())='Month']"));
-        String Monthtext = MonthText.getText();
-
-        Thread.sleep(2000);
-        if (Monthtext.contains("Month")) {
-            System.out.println("The Calendar switched to month view");
-        } else {
-            System.out.println("The Calendar is not switched to month view");
-        }
-
-        Thread.sleep(2000);
-        WebElement ClickCreate = driver.findElement(By.xpath("//span[text()='Create']"));
-        js.executeScript("arguments[0].click();", ClickCreate);
-
-        Thread.sleep(2000);
-        WebElement ClickTask = driver.findElement(By.xpath("//span[text()='Task']"));
-        js.executeScript("arguments[0].click();", ClickTask);
-
-        WebElement Addtital = driver.findElement(By.xpath("//input[@aria-label='Add title']"));
-        Addtital.sendKeys("Crio INTV Task Automation");
-
-        WebElement AddDescription = driver.findElement(By.xpath("//textarea[@placeholder='Add description']"));
-        AddDescription.sendKeys("Crio INTV Calendar Task Automation");
-
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//*[@id='yDmH0d']/div/div/div[2]/span/div/div[1]/div[2]/div[2]/div[4]/button")).click();
-        WebElement messageElement = driver.findElement(By.xpath("//div[@class='VYTiVb']"));
-
-        if (messageElement.isDisplayed()) {
-            System.out.println("The Calendar switched to month view and a task was created. :: TEST PASS");
-        } else {
-            System.out.println("The Calendar is not switched to month view and a task was not created. :: TEST FAIL");
-        }
-
-        Thread.sleep(2000);
-        WebElement openTask = driver.findElement(By.xpath("//*[@id='YPCqFe']/div/div/div/div[2]/div[2]/div[3]/div/div[3]/div/div/div"));
-        js.executeScript("arguments[0].click();", openTask);
-
-        WebElement Description = driver.findElement(By.xpath("//span[text()='Description:']"));
-        String DetailDescription = Description.getText();
-
-        if (DetailDescription.contains("Crio INTV Calendar Task Automation")) {
-            System.out.println("description is correct");
-        } else {
-            System.out.println("description is not correct");
-        }
-
-        driver.findElement(By.xpath("//*[@id=\"xDetDlgCloseBu\"]")).click();
-
-        System.out.println("End Test case : TestCase02");
+        System.out.println("TestCase01 : START");
+        initializeBrowserAndPage();
+        gmailCalendar.TestCase01();
+        System.out.println("TestCase01 : END : PASS");
 
     }
 
-    public  void testCase03() throws InterruptedException {
+    @Test
+    public  void TestCase02() throws InterruptedException {
 
-        System.out.println("Start Test case : TestCase03");
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+//  TestCase02: Verify Calendar Navigation and Add Task
+//  Description: Switch to the month view, and add a task for today.
+//  Test Steps:
+//       1) Switch to the month view.
+//       2) Click on the calendar to add a task.
+//       3) Navigate to the Tasks tab.
+//       4) Select a date and enter task details. Task Details:
+//                  Title: Crio INTV Task Automation
+//                  Description: Crio INTV Calendar Task Automation
+//
+//  Expected Result: The Calendar switched to month view and a task was created.
 
-        Thread.sleep(8000);
-        WebElement openTask = driver.findElement(By.xpath("//*[@id='YPCqFe']/div/div/div/div[2]/div[2]/div[3]/div/div[3]/div/div/div"));
-        openTask.click();
-
-        WebElement editButton = driver.findElement(By.xpath("//*[@id='yDmH0d']/div/div/div[2]/span/div/div[1]/div/div/div[2]/div[1]/span/button/div"));
-        editButton.click();
-
-        Thread.sleep(3000);
-        WebElement ChangeDescription = driver.findElement(By.xpath("//textarea[@placeholder='Add description']"));
-        ChangeDescription.clear();
-        ChangeDescription.sendKeys("Crio INTV Task Automation is a test suite designed for automating various tasks on the Google Calendar web application");
-
-        //Click on save
-        Thread.sleep(4000);
-        driver.findElement(By.xpath("//*[@id='yDmH0d']/div/div/div[2]/span/div/div[8]/div/button")).click();
-
-        WebElement messageElement = driver.findElement(By.xpath("//div[@class='VYTiVb']"));
-
-        if (messageElement.isDisplayed()) {
-            System.out.println("The task description is successfully updated and displayed. :: TEST PASS");
-        } else {
-            System.out.println("The task description is not successfully updated and displayed. :: TEST FAIL");
-        }
-
-        Thread.sleep(4000);
-        js.executeScript("arguments[0].click();", openTask);
-
-        WebElement NewDescriptionText = driver.findElement(By.xpath("//*[@id='xDetDlgDesc']"));
-        String NewDescription = NewDescriptionText.getText();
-
-        WebElement tital = driver.findElement(By.xpath("//span[@id='rAECCd']"));
-        String GetTital = tital.getText();
-
-        if (GetTital.contains("Crio INTV Task Automation")) {
-            System.out.println("Tital is correct :: TEST PASS");
-        } else {
-            System.out.println("Tital is not correct :: TEST FAIL");
-        }
-        
-        System.out.println(NewDescriptionText.getText());
-
-        if (NewDescription.contains("Crio INTV Task Automation is a test suite designed for automating various tasks on the Google Calendar web application") ) {
-            System.out.println("Description is update :: TEST PASS");
-        } else {
-            System.out.println("Description is not update :: TEST FAIL");
-        }
-
-        System.out.println("End Test case : TestCase03");
+        System.out.println("TestCase02 : START");
+        gmailCalendar.TestCase02();
+        System.out.println("TestCase02 : END : PASS");
     }
 
-    public  void testCase04 () throws InterruptedException {
+    @Test
+    public  void TestCase03 () throws InterruptedException {
 
-        System.out.println("Start Test case : TestCase04");
+//  TestCase03: Verify the Task Updation
+//  Description: Select an existing task, update its description, and verify the successful update.
+//  Test Steps:
+//       Click on an existing task.
+//       Open the task details.
+//       Update the task description to "Crio INTV Task Automation is a test suite designed for automating various tasks on the Google Calendar web application"
+//       Verify that the updated description is displayed.
+//  Expected Result: The task description is successfully updated and displayed.
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement openTask = driver.findElement(By.xpath("//*[@id='YPCqFe']/div/div/div/div[2]/div[2]/div[3]/div/div[3]/div/div/div"));
-        js.executeScript("arguments[0].click();", openTask);
+        System.out.println("TestCase03 : START");
+        gmailCalendar.TestCase03();
+        System.out.println("TestCase03 : END : PASS");
+    }
 
-        WebElement tital = driver.findElement(By.xpath("//span[@id='rAECCd']"));
-        String GetTital = tital.getText();
+    @Test
+    public  void TestCase04 () throws InterruptedException {
 
-        if (GetTital.contains("Crio INTV Task Automation")) {
-            System.out.println("Tital is correct :: TEST PASS");
-        } else {
-            System.out.println("Tital is not correct :: TEST FAIL");
-        }
+//  TestCase04: Verify the Task deletion
+//  Description: Delete an existing task and confirm the deletion.
+//  Test Steps:
+//        Click on an existing task.
+//        Open the task details.
+//        Verify the title of the task.
+//        Delete the task.
+//        Confirm the task deletion, by verifying "Task deleted" is displayed.
+//  Expected Result: The task is successfully deleted, and the confirmation message indicates "Task deleted"
 
-        WebElement DelteTask = driver.findElement(By.xpath("//button[@jscontroller='PIVayb' and @aria-label='Delete task']"));
-        DelteTask.click();
-
-        WebElement DeleteTaskMSG = driver.findElement(By.xpath("//div[@class='VYTiVb']"));
-        String DeleteMessage = DeleteTaskMSG.getText(); 
-
-        System.out.println(DeleteTaskMSG.getText());
-
-        if (DeleteMessage.contains("Task deleted")) {
-            System.out.println("Alert Task deleted has been displayed :: TEST PASS");
-        } else {
-            System.out.println("Alert Task deleted has not been displayed :: TEST FAIL");
-        }
-    
-        System.out.println("End Test case : TestCase04");
+        System.out.println("TestCase04 : START");
+        gmailCalendar.TestCase04();
+        System.out.println("TestCase04 : END : PASS");
     }
 }

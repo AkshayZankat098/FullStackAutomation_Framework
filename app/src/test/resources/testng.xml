@@ -4,13 +4,14 @@
     <test name="LoginTests">
         <classes>
 
-            <class name="StepDefinationFile.FlipkartAutomation.FlipkartTest">
+            <class name="StepDefinationFile.GmailCalendar.CalendarAutomation">
 
                 <methods>
 
                     <include name="TestCase01"/>
                     <include name="TestCase02"/>
                     <include name="TestCase03"/>
+                    <include name="TestCase04"/>
 
                 </methods>
                 

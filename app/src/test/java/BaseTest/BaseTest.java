@@ -1,14 +1,9 @@
 package BaseTest;
 
+import PageObjectFile.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
-
-import PageObjectFile.PageObject_Flipkart;
-import PageObjectFile.PageObject_QkartLogin;
-import PageObjectFile.PageObject_Registration;
-import PageObjectFile.PageObject_Searchbox;
-import PageObjectFile.Practice_POM;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -18,6 +13,10 @@ public class BaseTest {
     protected PageObject_Registration registration;     // ✅ Accessible to child test classes
     protected PageObject_Searchbox searchbox;           // ✅ Accessible to child test classes    
     protected PageObject_Flipkart flipkart;             // ✅ Accessible to child test classes
+    protected PageObject_GmailCalendar gmailCalendar;
+    protected PageObject_GoogleForm googleForm;
+    protected PageObject_LeetCode leetCode;
+    protected PageObject_YouTube youTube;
     protected Practice_POM practice;
 
     public void initializeBrowserAndPage() {
@@ -31,7 +30,12 @@ public class BaseTest {
         registration = new PageObject_Registration(driver);
         searchbox = new PageObject_Searchbox(driver);
         flipkart = new PageObject_Flipkart(driver);
+        gmailCalendar = new PageObject_GmailCalendar(driver);
+        googleForm = new PageObject_GoogleForm(driver);
+        leetCode = new PageObject_LeetCode(driver);
+        youTube = new PageObject_YouTube(driver);
         practice = new Practice_POM(driver);
+
 
     }
 
