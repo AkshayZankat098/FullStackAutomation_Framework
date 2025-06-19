@@ -11,12 +11,12 @@ public class CalendarAutomation extends BaseTest {
     @Test
     public void TestCase01 () {
 
-//  TestCase01 : Verify Calendar Home Page
+//  TestCase01: Verify Calendar Home Page
 //  Description: Verify the URL of the Google Calendar home page
-//  Test Steps :
+//  Test Steps:
 //         1) Navigate to Google Calendar ( https://calendar.google.com/ ).
 //         2) Verify that the current URL contains "calendar."
-//  Expected Result : The URL of the Calendar homepage contains "calendar".
+//  Expected Result: The URL of the Calendar homepage contains "calendar".
 
         System.out.println("TestCase01 : START");
         initializeBrowserAndPage();

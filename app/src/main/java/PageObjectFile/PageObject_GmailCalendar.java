@@ -12,8 +12,19 @@ public class PageObject_GmailCalendar {
     private WebDriver driver;
 
     //Page Elements using PageFactory
-    @FindBy(xpath = "//input[@name='q']")
-    private WebElement search;
+    @FindBy(xpath = "(//span[text()='Sign in '])[1]")
+    private WebElement SignIN;
+
+    @FindBy(xpath = "//input[@aria-label='Email or phone']")
+    private WebElement EnterEmail;
+
+    @FindBy(xpath = "//span[text()='Next']")
+    private WebElement NextButton;
+
+    @FindBy(xpath = "//input[@aria-label='Enter your password']")
+    private WebElement EnterPassword;
+
+
 
     // Constructor
     public PageObject_GmailCalendar (WebDriver driver) {
@@ -24,7 +35,7 @@ public class PageObject_GmailCalendar {
     //Page Java_Selenium Methods/Logic Actions
     public void TestCase01 () {
 
-        driver.get("https://calendar.google.com/");
+        driver.get("https://calendar.google.com/calendar/u/0/r");
         String CurrentURL = driver.getCurrentUrl();
 
         if (CurrentURL.contains("calendar")) {
@@ -32,6 +43,12 @@ public class PageObject_GmailCalendar {
         } else {
             System.out.println("The URL of the Calendar homepage not contains \"calendar\". :: TEST FAIL");
         }
+
+        SignIN.click();
+        EnterEmail.sendKeys("motivation.nilkanth");
+        NextButton.click();
+        EnterPassword.sendKeys("Test@123");
+
 
     }
 

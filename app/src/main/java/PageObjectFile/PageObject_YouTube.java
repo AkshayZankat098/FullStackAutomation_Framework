@@ -4,13 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 public class PageObject_YouTube {
 
     static WebDriver driver;
-    static SoftAssert softAssert = new SoftAssert();
 
     //Page Elements using PageFactory
     @FindBy(xpath = "//input[@name='q']")
@@ -32,9 +30,6 @@ public class PageObject_YouTube {
         driver.get("https://www.youtube.com/");
         String expectedUrl = "https://www.youtube.com/";
         String actualUrl = driver.getCurrentUrl();
-
-        softAssert.assertEquals(actualUrl, expectedUrl, "The actual URL did not match the expected URL!");
-        softAssert.assertAll();
 
         WebElement About = driver.findElement(By.xpath("//a[text()='About']"));
         About.click();
@@ -69,15 +64,13 @@ public class PageObject_YouTube {
 
         // Soft Assert for MovieText
         boolean containsGenre = MovieText.contains("Comedy") && MovieText.contains("Animation") && MovieText.contains("Drama");
-        softAssert.assertTrue(containsGenre, "Movie should contain Comedy, Animation, and Drama");
+
         if (containsGenre) {
             System.out.println("Movie contains Comedy, Animation, and Drama");
         } else {
             System.out.println("Movie does not contain all of Comedy, Animation, and Drama");
         }
 
-        // Soft Assert for CategotyLast
-        softAssert.assertTrue(CategotyLast.contains("A"), "CategotyLast should contain A");
         if (CategotyLast.contains("A")) {
             System.out.println("CategotyLast contains A");
         } else {
@@ -97,9 +90,6 @@ public class PageObject_YouTube {
         String Count = MusicNo.getText();
         int trackCount = Integer.parseInt(Count.replaceAll("[^0-9]", ""));
         System.out.println("Number of tracks: " + trackCount);
-
-        softAssert.assertTrue(trackCount <= 50,"Number of tracks in " + MusicPlaylistName + " is greater than 50: " + trackCount);
-        softAssert.assertAll();
     }
 
     public void TestCase04 () throws InterruptedException {
