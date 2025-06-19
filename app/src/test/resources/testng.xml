@@ -4,11 +4,13 @@
     <test name="LoginTests">
         <classes>
 
-            <class name="StepDefinationFile.Practice.Practice">
+            <class name="StepDefinationFile.FlipkartAutomation.FlipkartTest">
 
                 <methods>
 
                     <include name="TestCase01"/>
+                    <include name="TestCase02"/>
+                    <include name="TestCase03"/>
 
                 </methods>
                 
