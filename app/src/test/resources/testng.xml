@@ -4,14 +4,14 @@
     <test name="LoginTests">
         <classes>
 
-            <class name="StepDefinationFile.GmailCalendar.CalendarAutomation">
+            <class name="StepDefinitionFile.Qkart.Qkart">
 
                 <methods>
 
                     <include name="TestCase01"/>
 <!--                    <include name="TestCase02"/>-->
-<!--                    <include name="TestCase03"/>-->
-<!--                    <include name="TestCase04"/>-->
+                    <include name="TestCase03"/>
+                    <include name="TestCase04"/>
 
                 </methods>
                 

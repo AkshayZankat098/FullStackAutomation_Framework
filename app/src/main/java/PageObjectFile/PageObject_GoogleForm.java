@@ -5,7 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,8 +17,35 @@ public class PageObject_GoogleForm {
     private WebDriver driver;
 
     //Page Elements using PageFactory
-    @FindBy(xpath = "//input[@name='q']")
-    private WebElement search;
+    @FindBy(xpath = "//textarea[@aria-label='Your answer']")
+    private WebElement PracticingAutomation;
+
+    @FindBy(xpath = "(//input[@class='whsOnd zHQkBf'])[1]")
+    private WebElement NameField;
+
+    @FindBy(xpath = "//div[@id='i19' and @class='Od2TWd hYsg7c']")
+    private WebElement AutomationExperience;
+
+    @FindBy(xpath = "//span[text()='Choose']")
+    private WebElement AddressedDropdown;
+
+    @FindBy(xpath = "(//div[@jsname='wQNmvb']//span[text()='Mr'])[2]")
+    private WebElement ChooseMR;
+
+    @FindBy(xpath = "//input[@type='date']")
+    private WebElement dateField;
+
+    @FindBy(xpath = "//input[@aria-label='Hour']")
+    private WebElement TimeRightNowHOUR;
+
+    @FindBy(xpath = "//input[@aria-label='Minute']")
+    private WebElement TimeRightNowMIN;
+
+    @FindBy(xpath = "//span[text()='Submit']")
+    private WebElement SAVE_Button;
+
+    @FindBy(xpath = "//div[@class='vHW8K']")
+    private WebElement successMessage;
 
     // Constructor
     public PageObject_GoogleForm (WebDriver driver) {
@@ -24,20 +54,20 @@ public class PageObject_GoogleForm {
     }
 
     //Page Java_Selenium Methods/Logic Actions
-    public void TestCase01 () {
+    public void TestCase01 () throws InterruptedException {
 
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform");
-        WebElement NameField = driver.findElement(By.xpath("//input[@aria-labelledby='i1 i4']"));
-        NameField.sendKeys("Crio Learner");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(NameField));
+        NameField.sendKeys("Akshay Zankat");
 
         //Generate epochTime
         long epochTime = Instant.now().getEpochSecond();
         String message = "I want to be the best QA Engineer! " + epochTime;
 
-        WebElement PracticingAutomation = driver.findElement(By.xpath("//textarea[@aria-label='Your answer']"));
         PracticingAutomation.sendKeys(message);
-
-        WebElement AutomationExperience = driver.findElement(By.xpath("//div[@id='i19' and @class='Od2TWd hYsg7c']"));
         AutomationExperience.click();
 
         //Select Java, Selenium and TestNG from the next check-box
@@ -45,32 +75,24 @@ public class PageObject_GoogleForm {
         driver.findElement(By.xpath("//span[text()='Selenium']")).click();
         driver.findElement(By.xpath("//span[text()='TestNG']")).click();
 
-        WebElement AddressedDropdown = driver.findElement(By.xpath("//span[text()='Choose']"));
+        wait.until(ExpectedConditions.elementToBeClickable(AddressedDropdown));
         AddressedDropdown.click();
-
-        WebElement ChooseMR = driver.findElement(By.xpath("//*[@id='mG61Hd']/div[2]/div/div[2]/div[5]/div/div/div[2]/div/div[2]/div[3]/span"));
+        wait.until(ExpectedConditions.elementToBeClickable(ChooseMR));
         ChooseMR.click();
+        Thread.sleep(3000);
 
         LocalDate GetDate7DaysAgo = LocalDate.now().minusDays(7);
         DateTimeFormatter FormateDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = GetDate7DaysAgo.format(FormateDate);
 
-        WebElement dateField = driver.findElement(By.xpath("//input[@type='date']"));
         dateField.sendKeys(formattedDate);
-
-        WebElement TimeRightNowHOUR = driver.findElement(By.xpath("//input[@aria-label='Hour']"));
-        WebElement TimeRightNowMIN = driver.findElement(By.xpath("//input[@aria-label='Minute']"));
-
         TimeRightNowHOUR.click();
         TimeRightNowHOUR.sendKeys("07");
 
         TimeRightNowMIN.click();
         TimeRightNowMIN.sendKeys("30");
 
-        WebElement SAVE_Button = driver.findElement(By.xpath("//span[text()='Submit']"));
         SAVE_Button.click();
-
-        WebElement successMessage = driver.findElement(By.xpath("//div[@class='vHW8K']"));
         System.out.println(successMessage.getText());
 
     }

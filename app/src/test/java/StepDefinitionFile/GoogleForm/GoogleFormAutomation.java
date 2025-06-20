@@ -1,4 +1,4 @@
-package StepDefinationFile.GoogleForm;
+package StepDefinitionFile.GoogleForm;
 
 import org.testng.annotations.Test;
 import BaseTest.BaseTest;
@@ -6,7 +6,7 @@ import BaseTest.BaseTest;
 public class GoogleFormAutomation extends BaseTest {
 
     @Test
-    public void testCase01 () throws InterruptedException {
+    public void TestCase01 () throws InterruptedException {
 
 // 1) Navigate to this google form.
 // 2) Fill in Crio Learner in the 1st text box
@@ -19,6 +19,7 @@ public class GoogleFormAutomation extends BaseTest {
 // 9) You will see a success message on the website. Print the same message on the console upon successful completion
 
         System.out.println("TestCase01 : START");
+        initializeBrowserAndPage();
         googleForm.TestCase01();
         System.out.println("TestCase01 : END : PASS");
 

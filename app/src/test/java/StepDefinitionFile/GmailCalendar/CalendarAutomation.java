@@ -1,8 +1,5 @@
-package StepDefinationFile.GmailCalendar;
+package StepDefinitionFile.GmailCalendar;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import BaseTest.BaseTest;
 import org.testng.annotations.Test;
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,13 @@ public class PageObject_LeetCode {
 
     private WebDriver driver;
 
+
     //Page Elements using PageFactory
-    @FindBy(xpath = "//input[@name='q']")
-    private WebElement search;
+    @FindBy(xpath = "//p[text()='View Questions ']")
+    private WebElement ViewQuestions;
+
+    @FindBy(xpath = "//a[text()='Two Sum']")
+    private WebElement TwoSum;
 
     // Constructor
     public PageObject_LeetCode(WebDriver driver) {
@@ -38,11 +43,8 @@ public class PageObject_LeetCode {
 
     public void TestCase02 () {
 
-        driver.get("https://leetcode.com/");
-
-        WebElement ViewQuestions = driver.findElement(By.xpath("//p[text()='View Questions ']"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         ViewQuestions.click();
-
         String Problemset = driver.getCurrentUrl();
 
         if (Problemset.contains("problemset")) {
@@ -52,14 +54,11 @@ public class PageObject_LeetCode {
         }
 
         List<WebElement> questions = driver.findElements(By.xpath("//div[@class='truncate']"));
-
         List<String> fiveQuestions = new ArrayList<>();
 
         for (int i = 1; i < questions.size(); i++) {
-
             System.out.println(questions.get(i).getText());
             fiveQuestions.add(questions.get(i).getText());
-
             if (i==5) {
                 break;
             }
@@ -74,13 +73,10 @@ public class PageObject_LeetCode {
 
     public void TestCase03 (){
 
-        driver.get("https://leetcode.com/");
-        WebElement ViewQuestions = driver.findElement(By.xpath("//p[text()='View Questions ']"));
         ViewQuestions.click();
-
-        driver.findElement(By.xpath("//a[text()='Two Sum']")).click();
-
+        TwoSum.click();
         String two_sumURL = driver.getCurrentUrl();
+
         if (two_sumURL.contains("two-sum")) {
             System.out.println("The URL of the problem contains \"two-sum\" :: TEST PASS");
         } else {
@@ -90,11 +86,8 @@ public class PageObject_LeetCode {
 
     public void TestCase04 (){
 
-        driver.get("https://leetcode.com/");
-        WebElement ViewQuestions = driver.findElement(By.xpath("//p[text()='View Questions ']"));
         ViewQuestions.click();
-
-        driver.findElement(By.xpath("//a[text()='Two Sum']")).click();
+        TwoSum.click();
 
         WebElement Submissions = driver.findElement(By.xpath("//div[contains(@class, 'normal') and contains(text(), 'Submissions')]"));
         Submissions.click();

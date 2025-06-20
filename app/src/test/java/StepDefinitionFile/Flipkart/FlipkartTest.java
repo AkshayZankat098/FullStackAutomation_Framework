@@ -1,4 +1,4 @@
-package StepDefinationFile.Flipkart;
+package StepDefinitionFile.Flipkart;
 
 import org.testng.annotations.Test;
 

@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PageObject_Qkart {
 
     private WebDriver driver;
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     //Page Elements using PageFactory
     @FindBy(xpath = "//button[text()='Login']")
@@ -64,11 +65,10 @@ public class PageObject_Qkart {
     }
 
     //Page Java_Selenium Methods/Logic Actions
-    public void Login () throws InterruptedException {
+    public void TestCaseID01 () throws InterruptedException {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String loginURL = null;
-
         if (Login.isDisplayed()) {
             System.out.println("Login button is disaplay : PASS");
             Login.click();
@@ -83,17 +83,13 @@ public class PageObject_Qkart {
             Login_Password.sendKeys("Akshay@123");
             Login_Button.click();
             System.out.println("Username login successfully : PASS");
-            
             wait.until(ExpectedConditions.visibilityOf(Logout)).click();
-            Thread.sleep(2000);
         } else {
             System.out.println("System is not navigate to login page");
         }
     }
 
-    public void registerWithOld_User (String email, String pass, String confirmPass) {
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public void TestCaseID02 (String email, String pass, String confirmPass) {
 
         wait.until(ExpectedConditions.visibilityOf(Register)).click();
         Username.sendKeys(email);
@@ -111,13 +107,13 @@ public class PageObject_Qkart {
         }
     }
 
-    public void Search (String Name1, String Name2) throws InterruptedException {
+    public void TestCaseID03 (String Name1, String Name2) throws InterruptedException {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         wait.until(ExpectedConditions.visibilityOf(search)).click();
         wait.until(ExpectedConditions.visibilityOf(search)).sendKeys(Name1);
+        Thread.sleep(3000);
 
         String Search_ResultYonex = wait.until(ExpectedConditions.visibilityOf(Result)).getText();
         if (Search_ResultYonex.contains("YONEX")) {
@@ -129,13 +125,27 @@ public class PageObject_Qkart {
         wait.until(ExpectedConditions.visibilityOf(search)).click();
         wait.until(ExpectedConditions.visibilityOf(search)).clear();
         wait.until(ExpectedConditions.visibilityOf(search)).sendKeys(Name2);
+        Thread.sleep(3000);
 
-        String Search_ResultGesundheit = driver.findElement(By.xpath("//div[@class='loading MuiBox-root css-0']")).getText();
-        if (Search_ResultGesundheit.contains(" No products found ")) {
-            System.out.println("No products found : PASS");
+        WebElement loadingText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='loading MuiBox-root css-0']//h4")));
+
+        String text = loadingText.getText().trim(); //Remove any extra spaces
+        System.out.println("Validation Message: " + text);
+
+        if (text.contains("No products found")) {
+            System.out.println("No products found: PASS");
         } else {
-            System.out.println("No products found validation message not present : FAIL");
+            System.out.println("No products found validation message not present: FAIL");
         }
+    }
+
+    public void TestCaseID04 (String Name3) throws InterruptedException {
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(search)).click();
+        wait.until(ExpectedConditions.visibilityOf(search)).clear();
+        wait.until(ExpectedConditions.visibilityOf(search)).sendKeys(Name3);
+
     }
 
 }

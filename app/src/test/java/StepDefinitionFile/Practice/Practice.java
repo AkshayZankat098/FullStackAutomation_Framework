@@ -1,4 +1,4 @@
-package StepDefinationFile.Practice;
+package StepDefinitionFile.Practice;
 
 import java.util.ArrayList;
 import java.util.List;
