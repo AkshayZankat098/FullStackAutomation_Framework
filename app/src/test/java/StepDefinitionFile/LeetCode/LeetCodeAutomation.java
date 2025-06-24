@@ -1,11 +1,12 @@
 package StepDefinitionFile.LeetCode;
+
 import BaseTest.BaseTest;
 import org.testng.annotations.Test;
 
 public class LeetCodeAutomation extends BaseTest {
 
     @Test
-    public  void TestCase01 (){
+    public void TestCase01() {
 
 //  Description: Verify that the Leetcode homepage URL contains "leetcode"
 //  Test Steps:
@@ -14,13 +15,12 @@ public class LeetCodeAutomation extends BaseTest {
 //  Expected Result: The URL of the Leetcode homepage contains "leetcode"
 
         System.out.println("Start TestCase01 : START");
-        initializeBrowserAndPage();
         leetCode.TestCase01();
         System.out.println("End TestCase01 : END : PASS");
     }
 
     @Test
-    public void TestCase02 () {
+    public void TestCase02() {
 
 //  Description: Retrieve details of the first 5 questions on the problems page..
 //  Test Steps:
@@ -33,10 +33,10 @@ public class LeetCodeAutomation extends BaseTest {
         System.out.println("Start TestCase02 : START");
         leetCode.TestCase02();
         System.out.println("End TestCase02 : END : PASS");
-        }
+    }
 
     @Test
-    public void TestCase03 () {
+    public void TestCase03() {
 
 //  Description: Open the Two Sum problem and verify the URL.
 //  Test Steps:
@@ -50,7 +50,7 @@ public class LeetCodeAutomation extends BaseTest {
     }
 
     @Test
-    public void TestCase04 () {
+    public void TestCase04() {
 
 //  Description: Check the submissions tab and verify if it displays "Register or Sign In"
 //  Test Steps:

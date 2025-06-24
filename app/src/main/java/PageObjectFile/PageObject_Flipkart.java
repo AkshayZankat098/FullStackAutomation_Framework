@@ -34,7 +34,6 @@ public class PageObject_Flipkart {
     @FindBy(xpath = "//div[text()='4★ & above']")
     private WebElement FourStart;
 
-
     // Constructor
     public PageObject_Flipkart(WebDriver driver) {
         this.driver = driver;
@@ -42,8 +41,7 @@ public class PageObject_Flipkart {
     }
 
     //Page Java_Selenium Methods/Logic Actions
-    public void TestCase01 (String ProductName) {
-        driver.get("https://www.flipkart.com/");
+    public void TestCase01(String ProductName) {
         search.sendKeys(ProductName);
         Click_search.click();
         String searchText = CheckResult.getText();
@@ -65,7 +63,7 @@ public class PageObject_Flipkart {
         System.out.println("count of items with rating less than or equal to 4 stars : " + count);
     }
 
-    public void TestCase02 (String ProductName) throws InterruptedException {
+    public void TestCase02(String ProductName) throws InterruptedException {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         search.click();
@@ -87,20 +85,20 @@ public class PageObject_Flipkart {
 
         for (WebElement discountElement : discountElements) {
 
-                WebElement titleElement = discountElement.findElement(By.xpath(".//div[@class='KzDlHZ']"));
-                String title = titleElement.getText();
+            WebElement titleElement = discountElement.findElement(By.xpath(".//div[@class='KzDlHZ']"));
+            String title = titleElement.getText();
 
-                WebElement discountTextElement = discountElement.findElement(By.xpath(".//div[@class='UkUFwK']//span"));
-                String discountText = discountTextElement.getText();
+            WebElement discountTextElement = discountElement.findElement(By.xpath(".//div[@class='UkUFwK']//span"));
+            String discountText = discountTextElement.getText();
 
-                int discount = Integer.parseInt(discountText.replaceAll("[^0-9]", ""));
-                if (discount > 5) {
-                    System.out.println("Title : " + title + " : " + discount);
-                }
+            int discount = Integer.parseInt(discountText.replaceAll("[^0-9]", ""));
+            if (discount > 5) {
+                System.out.println("Title : " + title + " : " + discount);
             }
         }
+    }
 
-    public void TestCase03 (String ProductName) throws InterruptedException {
+    public void TestCase03(String ProductName) throws InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         search.click();
@@ -141,10 +139,10 @@ public class PageObject_Flipkart {
 
         List<Map.Entry<Integer, Integer>> sortedList = new ArrayList<>(reviewIndexMap.entrySet());
 
-            sortedList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
+        sortedList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
-            System.out.println("Top 5 Coffee Mugs based on highest reviews:");
-            for (int i = 0; i < 5 && i < sortedList.size(); i++) {
+        System.out.println("Top 5 Coffee Mugs based on highest reviews:");
+        for (int i = 0; i < 5 && i < sortedList.size(); i++) {
             int index = sortedList.get(i).getKey();
 
             String title = Title.get(index).getText();
@@ -155,6 +153,6 @@ public class PageObject_Flipkart {
             System.out.println();
         }
 
-        }
+    }
 
 }

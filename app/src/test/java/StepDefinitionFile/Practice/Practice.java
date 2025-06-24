@@ -13,7 +13,6 @@ public class Practice extends BaseTest {
     @Test
     public void TestCase01() {
 
-        initializeBrowserAndPage();
         driver.get("http://192.168.27.132/COSEC/Login/Login");
 
         // Open new tab

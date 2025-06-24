@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class CalendarAutomation extends BaseTest {
 
     @Test
-    public void TestCase01 () {
+    public void TestCase01() {
 
 //  TestCase01: Verify Calendar Home Page
 //  Description: Verify the URL of the Google Calendar home page
@@ -16,14 +16,13 @@ public class CalendarAutomation extends BaseTest {
 //  Expected Result: The URL of the Calendar homepage contains "calendar".
 
         System.out.println("TestCase01 : START");
-        initializeBrowserAndPage();
         gmailCalendar.TestCase01();
         System.out.println("TestCase01 : END : PASS");
 
     }
 
     @Test
-    public  void TestCase02() throws InterruptedException {
+    public void TestCase02() throws InterruptedException {
 
 //  TestCase02: Verify Calendar Navigation and Add Task
 //  Description: Switch to the month view, and add a task for today.
@@ -43,7 +42,7 @@ public class CalendarAutomation extends BaseTest {
     }
 
     @Test
-    public  void TestCase03 () throws InterruptedException {
+    public void TestCase03() throws InterruptedException {
 
 //  TestCase03: Verify the Task Updation
 //  Description: Select an existing task, update its description, and verify the successful update.
@@ -60,7 +59,7 @@ public class CalendarAutomation extends BaseTest {
     }
 
     @Test
-    public  void TestCase04 () throws InterruptedException {
+    public void TestCase04() throws InterruptedException {
 
 //  TestCase04: Verify the Task deletion
 //  Description: Delete an existing task and confirm the deletion.

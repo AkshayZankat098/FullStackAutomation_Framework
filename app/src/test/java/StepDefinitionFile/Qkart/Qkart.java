@@ -9,7 +9,6 @@ public class Qkart extends BaseTest {
     @Test
     public void TestCase01() throws InterruptedException {
         System.out.println("TestCase01 : START");
-        initializeBrowserAndPage();
         driver.get("https://crio-qkart-qa.vercel.app/");
         Qkart.TestCaseID01();
         System.out.println("TestCase01 : END : PASS");

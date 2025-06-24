@@ -12,7 +12,6 @@ public class FlipkartTest extends BaseTest {
     public void TestCase01() throws InterruptedException {
 
         System.out.println("Test Case01 : START");
-        initializeBrowserAndPage();
         flipkart.TestCase01("Washing Machine");
         System.out.println("Test Case01 : END : PASS");
 
