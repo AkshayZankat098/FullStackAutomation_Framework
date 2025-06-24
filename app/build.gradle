@@ -35,9 +35,12 @@
 
         // https://mvnrepository.com/artifact/io.cucumber/cucumber-java
         implementation("io.cucumber:cucumber-java:7.23.0")
+        implementation("io.cucumber:cucumber-testng:7.23.0")
 
         // https://mvnrepository.com/artifact/org.testng/testng
         testImplementation("org.testng:testng:7.11.0")
+
+
 
     }
 
