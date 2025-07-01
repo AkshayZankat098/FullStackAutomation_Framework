@@ -7,7 +7,7 @@ import BaseTest.BaseTest;
 public class FlipkartTest extends BaseTest {
 
     @Test
-    // TestCase01 : Go to www.flipkart.com. Search "Washing Machine". Sort by popularity and print the count of items with rating less than or equal to 4 stars.
+    // TestCase01: Go to www.flipkart.com. Search "Washing Machine". Sort by popularity and print the count of items with rating less than or equal to 4 stars.
 
     public void TestCase01() throws InterruptedException {
 

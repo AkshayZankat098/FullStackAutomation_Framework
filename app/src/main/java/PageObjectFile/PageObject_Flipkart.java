@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -13,8 +12,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import static org.testng.AssertJUnit.assertTrue;
 
-public class PageObject_Flipkart {
+public class PageObject_Flipkart extends Abstract_Method {
 
     private WebDriver driver;
 
@@ -41,16 +41,14 @@ public class PageObject_Flipkart {
     }
 
     //Page Java_Selenium Methods/Logic Actions
-    public void TestCase01(String ProductName) {
+    public void TestCase01 (String ProductName) {
         search.sendKeys(ProductName);
         Click_search.click();
         String searchText = CheckResult.getText();
         System.out.println(searchText);
 
-        if (searchText.contains("washing machine")) {
-            System.out.println("Typed Washing Machine into search box");
-        }
-
+        //Hard assertion
+        assertTrue("Search text does not contain 'washing machine'", searchText.contains("Washing Machine"));
         List<WebElement> ratingElements = driver.findElements(By.xpath("//span[contains(@id,'productRating')]"));
 
         int count = 0;
@@ -75,12 +73,10 @@ public class PageObject_Flipkart {
 
         Thread.sleep(2000);
         String SearchText = CheckResult.getText();
-        if (SearchText.contains("iPhone")) {
-            System.out.println("Typed iPhone into search box");
-        }
 
+        //Hard assertion
+        assertTrue("Typed iPhone is not into search box", SearchText.contains("iPhone"));
         Thread.sleep(3000);
-
         List<WebElement> discountElements = driver.findElements(By.xpath("//div[@class='tUxRFH']"));
 
         for (WebElement discountElement : discountElements) {
@@ -110,17 +106,14 @@ public class PageObject_Flipkart {
 
         Thread.sleep(2000);
         String SearchText = CheckResult.getText();
-        if (SearchText.contains("Coffee Mug")) {
-            System.out.println("Typed iPhone into search box");
-        }
 
+        //Hard assertion
+        assertTrue("Typed Coffee Mug is not into search box", SearchText.contains("Coffee Mug"));
         FourStart.click();
         String URL = driver.getCurrentUrl();
-        if (URL.contains("above")) {
-            System.out.println("above 4start product is display");
-        } else {
-            System.out.println("above 4start product is not display");
-        }
+
+        //Hard assertion
+        assertTrue("above 4start product is not display", URL.contains("above"));
         Thread.sleep(5000);
 
         List<WebElement> Review = driver.findElements(By.xpath("//div[contains(@class, 'slAVV')]//span[contains(@class,'Wphh')]"));
@@ -128,7 +121,6 @@ public class PageObject_Flipkart {
         List<WebElement> Title = driver.findElements(By.xpath("//a[@class='wjcEIp']"));
 
         Map<Integer, Integer> reviewIndexMap = new HashMap<>();
-
         for (int i = 0; i < Review.size(); i++) {
             String reviewText = Review.get(i).getText();
             String number = reviewText.replaceAll("[^0-9]", "");
@@ -138,7 +130,6 @@ public class PageObject_Flipkart {
         }
 
         List<Map.Entry<Integer, Integer>> sortedList = new ArrayList<>(reviewIndexMap.entrySet());
-
         sortedList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
         System.out.println("Top 5 Coffee Mugs based on highest reviews:");

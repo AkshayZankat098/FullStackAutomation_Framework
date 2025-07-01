@@ -1,13 +1,12 @@
 package BaseTest;
 
 import PageObjectFile.*;
-import io.cucumber.java.After;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterSuite;
 
 import java.time.Duration;
 
@@ -26,7 +25,7 @@ public class BaseTest {
     public BaseTest() {
 
         String browser = "chrome";
-        String URL = "https://www.flipkart.com/";
+        String URL = "https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform";
 
         String browserLower = browser.toLowerCase();
         String URL_Lower = URL.toLowerCase();
@@ -48,8 +47,7 @@ public class BaseTest {
         }
 
         driver.manage().window().maximize();
-        driver.get(URL_Lower);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get(URL);
 
         //✅ Initialize Page Object
         Qkart = new PageObject_Qkart(driver);
@@ -61,8 +59,8 @@ public class BaseTest {
         practice = new Practice(driver);
     }
 
-    @After
-    public void CloseBrowser() {
-        driver.quit();
-    }
+//    @AfterSuite
+//    public void CloseBrowser() {
+//        driver.quit();
+//    }
 }

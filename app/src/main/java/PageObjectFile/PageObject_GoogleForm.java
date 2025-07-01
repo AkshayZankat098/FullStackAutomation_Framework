@@ -13,7 +13,8 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class PageObject_GoogleForm {
+public class PageObject_GoogleForm extends Abstract_Method {
+
     private WebDriver driver;
 
     //Page Elements using PageFactory
@@ -48,20 +49,18 @@ public class PageObject_GoogleForm {
     private WebElement successMessage;
 
     // Constructor
-    public PageObject_GoogleForm (WebDriver driver) {
+    public PageObject_GoogleForm(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     //Page Java_Selenium Methods/Logic Actions
-    public void TestCase01 () throws InterruptedException {
+    public void TestCase01() throws InterruptedException {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(NameField));
-        NameField.sendKeys("Akshay Zankat");
+        WebElement FieldName = waitForClickable(NameField, 10);
+        FieldName.sendKeys("Akshay Zankat");
 
         //Generate epochTime
         long epochTime = Instant.now().getEpochSecond();
@@ -75,9 +74,9 @@ public class PageObject_GoogleForm {
         driver.findElement(By.xpath("//span[text()='Selenium']")).click();
         driver.findElement(By.xpath("//span[text()='TestNG']")).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(AddressedDropdown));
+        waitForClickable(AddressedDropdown, 10);
         AddressedDropdown.click();
-        wait.until(ExpectedConditions.elementToBeClickable(ChooseMR));
+        waitForClickable(ChooseMR, 10);
         ChooseMR.click();
         Thread.sleep(3000);
 
