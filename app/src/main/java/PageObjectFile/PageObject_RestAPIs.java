@@ -6,16 +6,14 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured.*;
 import io.restassured.matcher.RestAssuredMatchers.*;
 import org.hamcrest.Matchers.*;
-
 import java.util.HashMap;
-
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class PageObject_RestAPIs {
     int id;
 
-    /*
+/* FrameWork folder Structure:
      src/main/java: Contains core development code such as
                  - Utility classes (API, WebDriver, ConfigLoader)
                  - Page Object Model (POM) classes for UI automation
@@ -35,8 +33,7 @@ public class PageObject_RestAPIs {
                  - Mock response files, test payloads
 
 
-    RestAPI: Is an API/library through which we can automate RestAPI.
-    Rest-assured by default support gherkin language
+RestAPI: Is an API/library through which we can automate RestAPI and Rest-assured by default support gherkin language.
 
     List of HTTPS methods in APIs:
         - GET (Read):	Retrieve data from the server (read-only).
@@ -45,35 +42,50 @@ public class PageObject_RestAPIs {
         - PATCH (Update - Partial update of a resource):	Update part of an existing resource (partial update).
         - DELETE (Delete):	Remove a resource from the server.
 
-    gherkin main methods:
-         1) Given() Pre-Require: content type, set cookies, add auth, add param, set headers info etc.
-         2) When() Step-Action: get, post, put, delete
-         3) Then() Expected-Result: validate status code, extract response, extract header cookies and response body.
+    Gherkin main methods:
+        1) Given() Pre-Require: content type, set cookies, add auth, add param, set headers info etc.
+        2) When() Step-Action: get, post, put, delete
+        3) Then() Expected-Result: validate status code, extract response, extract header cookies and response body.
 
-         Get users: https://reqres.in/api/users/2
-         Post (Create) user: https://reqres.in/api/users
-            Request body: Data sent by the client to the server in an HTTP request, typically in POST, PUT, or PATCH methods, used to create or update a resource.
+    Important definition In Rest-Assured:
+        - Base URL: Root address of the API server used to send requests. (https://reqres.in)
+        - End points: Specific paths appended to the base URL to access particular resources. (/api/users/2)
+        - Request body: Data sent by the client to the server in an HTTP request to create or update a resource.
+        - Response body: Data returned by the server in response to a client's request.
+        - Validation point in a then section: Used to assert expected outcomes like status code, response body, headers after an API call. (statusCode(200))
+        - Payload: Data sent in the request body (usually in JSON format) and request body is the part of payload.
+        - Authorization: Verifying if a user has permission to access a specific APIs resource or perform an action.
+        - Headers: Key-value pairs sent with requests or responses to pass metadata like content type, authorization, or custom info between client and server.
+
+1) Get users: https://reqres.in/api/users/2
+2) Post (Create) user: https://reqres.in/api/users
+         - Request body: Data sent by the client to the server in an HTTP request, typically in POST, PUT, or PATCH methods, used to create or update a resource.
             {
                 "name": "morpheus",
                 "job": "leader"
             }
 
-        Update user: https://reqres.in/api/users/2
+3) (PUT) Update user: https://reqres.in/api/users/2
         Request body:
         {
             "name": "morpheus",
             "job": "leader"
         }
 
-        Delete user: https://reqres.in/api/users/userid
+4) Delete user: https://reqres.in/api/users/userid
 
-        Base URL: root address of the API server used to send requests. (https://reqres.in)
-        End points: Specific paths appended to the base URL to access particular resources. (/api/users/2)
-        Request body: data sent by the client to the server in an HTTP request to create or update a resource.
-        Response body: data returned by the server in response to a client's request.
-        Validation point in a then section: Used to assert expected outcomes like status code, response body, headers after an API call. (statusCode(200))
+FrameWork: src/test/java
+- EndpointFile Package
+               > Routes class: All URLs maintained in this file
+               > UserEndPoint Class: All the CRUD operation methods are present. (To perform CRUD operations)
 
-    */
+- Payload Package
+          > UserPojo Class: All the payload data that we send into CRUD operation methods
+
+- Test Package
+          > Step-Definition files with @TEST annotation
+
+*/
 
     public void UserGet() {
 
@@ -88,6 +100,7 @@ public class PageObject_RestAPIs {
         HashMap data = new HashMap();
         data.put("name", "pavan");
         data.put("job", "trainer");
+        data.put("x-api-key", "reqres-free-v1");
 
         id = given().contentType("application/json").body(data)
 
@@ -98,6 +111,7 @@ public class PageObject_RestAPIs {
         HashMap data = new HashMap();
         data.put("name", "john");
         data.put("job", "teacher");
+        data.put("x-api-key", "reqres-free-v1");
 
         given().contentType("application/json").body(data)
 
