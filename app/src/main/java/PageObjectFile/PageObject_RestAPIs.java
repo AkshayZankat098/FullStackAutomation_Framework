@@ -83,7 +83,8 @@ FrameWork: src/test/java
           > UserPojo Class: All the payload data that we send into CRUD operation methods
 
 - Test Package
-          > Step-Definition files with @TEST annotation
+          > UserTst class: Step-Definition files with @TEST annotation
+
 
 */
 
