@@ -6,7 +6,9 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured.*;
 import io.restassured.matcher.RestAssuredMatchers.*;
 import org.hamcrest.Matchers.*;
+
 import java.util.HashMap;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -56,8 +58,9 @@ RestAPI: Is an API/library through which we can automate RestAPI and Rest-assure
         - Payload: Data sent in the request body (usually in JSON format) and request body is the part of payload.
         - Authorization: Verifying if a user has permission to access a specific APIs resource or perform an action.
         - Headers: Key-value pairs sent with requests or responses to pass metadata like content type, authorization, or custom info between client and server.
+        - Params: Key-value pairs sent in the URL or body to pass data to an API request.
 
-1) Get users: https://reqres.in/api/users/2
+1) Get users (Read): https://reqres.in/api/users/2
 2) Post (Create) user: https://reqres.in/api/users
          - Request body: Data sent by the client to the server in an HTTP request, typically in POST, PUT, or PATCH methods, used to create or update a resource.
             {
