@@ -34,7 +34,8 @@ public class PageObject_RestAPIs {
                  - Test-specific data sets
                  - Mock response files, test payloads
 
-
+What Is Rest-Api:
+What Is JSON:
 RestAPI: Is an API/library through which we can automate RestAPI and Rest-assured by default support gherkin language.
 
     List of HTTPS methods in APIs:
@@ -45,9 +46,9 @@ RestAPI: Is an API/library through which we can automate RestAPI and Rest-assure
         - DELETE (Delete):	Remove a resource from the server.
 
     Gherkin main methods:
-        1) Given() Pre-Require: content type, set cookies, add auth, add param, set headers info etc.
+        1) Given() Pre-Require: end-pont URL, req body, req headers, content type, set cookies, add auth, add/query param.
         2) When() Step-Action: get, post, put, delete
-        3) Then() Expected-Result: validate status code, extract response, extract header cookies and response body.
+        3) Then() Expected-Result/Assertion: validate status code, extract response, extract header, response body, cookies.
 
     Important definition In Rest-Assured:
         - Base URL: Root address of the API server used to send requests. (https://reqres.in)
@@ -59,6 +60,13 @@ RestAPI: Is an API/library through which we can automate RestAPI and Rest-assure
         - Authorization: Verifying if a user has permission to access a specific APIs resource or perform an action.
         - Headers: Key-value pairs sent with requests or responses to pass metadata like content type, authorization, or custom info between client and server.
         - Params: Key-value pairs sent in the URL or body to pass data to an API request.
+        - Path Parameters:
+        - Query Parameters:
+
+    Two most important interfaces
+        - RequestSpecification
+        - RestAssured
+
 
 1) Get users (Read): https://reqres.in/api/users/2
 2) Post (Create) user: https://reqres.in/api/users
@@ -87,6 +95,8 @@ FrameWork: src/test/java
 
 - Test Package
           > UserTst class: Step-Definition files with @TEST annotation
+
+All APIs StatusCode:
 
 
 */
