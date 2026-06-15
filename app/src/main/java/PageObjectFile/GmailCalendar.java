@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class PageObject_GmailCalendar {
+public class GmailCalendar {
 
     private WebDriver driver;
 
@@ -27,7 +27,7 @@ public class PageObject_GmailCalendar {
 
 
     // Constructor
-    public PageObject_GmailCalendar (WebDriver driver) {
+    public GmailCalendar(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

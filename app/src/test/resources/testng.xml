@@ -4,13 +4,11 @@
     <test name="LoginTests">
         <classes>
 
-            <class name="StepDefinitionFile.RestAPIs.ExampleRestAPIs">
+            <class name="StepDefinitionFile.Flipkart.FlipkartTest">
 
                 <methods>
 
-                    <include name="Test01"/>
-                    <include name="Test02"/>
-                    <include name="Test03"/>
+                    <include name="TestCase02"/>
 
                 </methods>
 

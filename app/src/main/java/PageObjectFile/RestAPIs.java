@@ -1,18 +1,11 @@
 package PageObjectFile;
 
-import io.cucumber.java.en.Given;
-import io.restassured.http.ContentType;
-import org.testng.annotations.Test;
-import io.restassured.RestAssured.*;
-import io.restassured.matcher.RestAssuredMatchers.*;
-import org.hamcrest.Matchers.*;
-
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class PageObject_RestAPIs {
+public class RestAPIs {
     int id;
 
 /* FrameWork folder Structure:

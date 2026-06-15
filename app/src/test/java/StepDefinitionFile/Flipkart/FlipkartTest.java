@@ -1,7 +1,5 @@
 package StepDefinitionFile.Flipkart;
-
 import org.testng.annotations.Test;
-
 import BaseTest.BaseTest;
 
 public class FlipkartTest extends BaseTest {

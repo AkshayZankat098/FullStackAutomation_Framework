@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
-public class PageObject_YouTube {
+public class YouTube {
 
     static WebDriver driver;
 
@@ -15,7 +15,7 @@ public class PageObject_YouTube {
     private WebElement search;
 
     // Constructor
-    public PageObject_YouTube (WebDriver driver) {
+    public YouTube(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

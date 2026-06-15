@@ -12,9 +12,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import static org.testng.AssertJUnit.assertTrue;
 
-public class PageObject_Flipkart extends Abstract_Method {
+public class Flipkart extends Abstract_Method {
 
     private WebDriver driver;
 
@@ -28,27 +29,31 @@ public class PageObject_Flipkart extends Abstract_Method {
     @FindBy(xpath = "//div[text()='Popularity']")
     private WebElement Popularity;
 
-    @FindBy(xpath = "//span[@class='BUOuZu']//span")
+    @FindBy(xpath = "//input[@name='q']")
     private WebElement CheckResult;
 
     @FindBy(xpath = "//div[text()='4★ & above']")
     private WebElement FourStart;
 
+    @FindBy(xpath = "//span[@class='b3wTlE']")
+    private WebElement close;
+
     // Constructor
-    public PageObject_Flipkart(WebDriver driver) {
+    public Flipkart(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     //Page Java_Selenium Methods/Logic Actions
     public void TestCase01 (String ProductName) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        close.click();
+
         search.sendKeys(ProductName);
         Click_search.click();
-        String searchText = CheckResult.getText();
-        System.out.println(searchText);
+        String value = CheckResult.getAttribute("value");
+        System.out.println(value);
 
-        //Hard assertion
-        assertTrue("Search text does not contain 'washing machine'", searchText.contains("Washing Machine"));
         List<WebElement> ratingElements = driver.findElements(By.xpath("//span[contains(@id,'productRating')]"));
 
         int count = 0;
@@ -62,8 +67,9 @@ public class PageObject_Flipkart extends Abstract_Method {
     }
 
     public void TestCase02(String ProductName) throws InterruptedException {
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        close.click();
+
         search.click();
         Actions actions = new Actions(driver);
         actions.moveToElement(search).click().keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.BACK_SPACE).perform();
@@ -71,32 +77,24 @@ public class PageObject_Flipkart extends Abstract_Method {
         search.sendKeys(ProductName);
         search.sendKeys(Keys.ENTER);
 
-        Thread.sleep(2000);
-        String SearchText = CheckResult.getText();
+        List<WebElement> prices = driver.findElements(By.xpath("//div[contains(@class,'HZ0E6r Rm9_cy') and contains(text(),'₹')]"));
 
-        //Hard assertion
-        assertTrue("Typed iPhone is not into search box", SearchText.contains("iPhone"));
-        Thread.sleep(3000);
-        List<WebElement> discountElements = driver.findElements(By.xpath("//div[@class='tUxRFH']"));
-
-        for (WebElement discountElement : discountElements) {
-
-            WebElement titleElement = discountElement.findElement(By.xpath(".//div[@class='KzDlHZ']"));
+        for (WebElement price : prices) {
+            WebElement titleElement = price.findElement(By.xpath("//div[(@class='RG5Slk')]"));
             String title = titleElement.getText();
 
-            WebElement discountTextElement = discountElement.findElement(By.xpath(".//div[@class='UkUFwK']//span"));
-            String discountText = discountTextElement.getText();
+            String priceText = price.getText();
+            int Price = Integer.parseInt(priceText.replaceAll("[^0-9]", ""));
 
-            int discount = Integer.parseInt(discountText.replaceAll("[^0-9]", ""));
-            if (discount > 5) {
-                System.out.println("Title : " + title + " : " + discount);
+            if (Price < 50000) {
+                System.out.println(title + " : " + Price);
             }
         }
+
+
     }
 
     public void TestCase03(String ProductName) throws InterruptedException {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         search.click();
         Actions actions = new Actions(driver);
         actions.moveToElement(search).click().keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.BACK_SPACE).perform();

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PageObject_Qkart {
+public class Qkart {
 
     private WebDriver driver;
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -59,7 +59,7 @@ public class PageObject_Qkart {
     private WebElement Result;
 
     // Constructor
-    public PageObject_Qkart(WebDriver driver) {
+    public Qkart(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

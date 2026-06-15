@@ -1,21 +1,18 @@
 package StepDefinitionFile.RestAPIs;
 
-import io.cucumber.java.en.Given;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import io.restassured.RestAssured.*;
-import io.restassured.matcher.RestAssuredMatchers.*;
-import org.hamcrest.Matchers.*;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-import PageObjectFile.PageObject_RestAPIs;
+import PageObjectFile.RestAPIs;
 import java.util.HashMap;
 
 public class ExampleRestAPIs {
 
     String id;
-    PageObject_RestAPIs pageObjectRestAPIs = new PageObject_RestAPIs();
+    RestAPIs pageObjectRestAPIs = new RestAPIs();
 
     @Test(priority = 1)
     public void Test01() {

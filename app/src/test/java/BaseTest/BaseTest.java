@@ -8,24 +8,22 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 
-import java.time.Duration;
-
 public class BaseTest {
 
     // ✅ Accessible to child test classes
     public static WebDriver driver;
-    protected PageObject_Qkart Qkart;
-    protected PageObject_Flipkart flipkart;
-    protected PageObject_GmailCalendar gmailCalendar;
-    protected PageObject_GoogleForm googleForm;
-    protected PageObject_LeetCode leetCode;
-    protected PageObject_YouTube youTube;
+    protected Qkart Qkart;
+    protected Flipkart flipkart;
+    protected GmailCalendar gmailCalendar;
+    protected GoogleForm googleForm;
+    protected LeetCode leetCode;
+    protected YouTube youTube;
     protected Practice practice;
 
     public BaseTest() {
 
         String browser = "chrome";
-        String URL = "https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform";
+        String URL = "https://www.flipkart.com/";
 
         String browserLower = browser.toLowerCase();
         String URL_Lower = URL.toLowerCase();
@@ -50,17 +48,16 @@ public class BaseTest {
         driver.get(URL);
 
         //✅ Initialize Page Object
-        Qkart = new PageObject_Qkart(driver);
-        flipkart = new PageObject_Flipkart(driver);
-        gmailCalendar = new PageObject_GmailCalendar(driver);
-        googleForm = new PageObject_GoogleForm(driver);
-        leetCode = new PageObject_LeetCode(driver);
-        youTube = new PageObject_YouTube(driver);
+        Qkart = new Qkart(driver);
+        flipkart = new Flipkart(driver);
+        gmailCalendar = new GmailCalendar(driver);
+        googleForm = new GoogleForm(driver);
+        leetCode = new LeetCode(driver);
+        youTube = new YouTube(driver);
         practice = new Practice(driver);
     }
-
-//    @AfterSuite
-//    public void CloseBrowser() {
-//        driver.quit();
-//    }
+    @AfterSuite(alwaysRun = true)
+    public void CloseBrowser() {
+        driver.quit();
+    }
 }

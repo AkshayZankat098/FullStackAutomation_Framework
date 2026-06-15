@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageObject_LeetCode {
+public class LeetCode {
 
     private WebDriver driver;
 
@@ -23,7 +23,7 @@ public class PageObject_LeetCode {
     private WebElement TwoSum;
 
     // Constructor
-    public PageObject_LeetCode(WebDriver driver) {
+    public LeetCode(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
