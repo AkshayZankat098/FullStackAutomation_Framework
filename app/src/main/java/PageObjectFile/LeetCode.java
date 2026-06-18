@@ -98,12 +98,11 @@ public class LeetCode {
         if (RegisterText.contains("Register or Sign In")) {
             System.out.println("The message \"Register or Sign In\" is displayed when you click on the submissions tab. :: TEST PASS");
         } else {
-            System.out.println("TEST FAIL");
+            System.out.println("Test Fail");
         }
 
         System.out.println("Check from PC1 with Branch_PC1");
         System.out.println("Check from PC2 with Branch_PC2");
-
         System.out.println("Check from PC1 with Branch_PC1 with new commit 17:39:00 PM");
     }
 

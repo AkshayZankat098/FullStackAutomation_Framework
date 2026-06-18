@@ -1,4 +1,4 @@
-package StepDefinitionFile.LeetCode;
+package TestFiles.LeetCode;
 
 import BaseTest.BaseTest;
 import org.testng.annotations.Test;

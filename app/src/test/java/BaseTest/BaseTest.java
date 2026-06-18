@@ -1,12 +1,19 @@
 package BaseTest;
 
-import PageObjectFile.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
+
+import PageObjectFile.Flipkart;
+import PageObjectFile.GmailCalendar;
+import PageObjectFile.GoogleForm;
+import PageObjectFile.LeetCode;
+import PageObjectFile.Practice;
+import PageObjectFile.Qkart;
+import PageObjectFile.YouTube;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 
@@ -23,10 +30,9 @@ public class BaseTest {
     public BaseTest() {
 
         String browser = "chrome";
-        String URL = "https://www.flipkart.com/";
-
+        String URL = "https://calendar.google.com/";
         String browserLower = browser.toLowerCase();
-        String URL_Lower = URL.toLowerCase();
+        
 
         if (browserLower.equals("chrome")) {
 
@@ -34,7 +40,6 @@ public class BaseTest {
             driver = new ChromeDriver();
 
         } else if (browserLower.equals("edge")) {
-
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
 
@@ -56,6 +61,7 @@ public class BaseTest {
         youTube = new YouTube(driver);
         practice = new Practice(driver);
     }
+    
     @AfterSuite(alwaysRun = true)
     public void CloseBrowser() {
         driver.quit();

@@ -1,4 +1,4 @@
-package StepDefinitionFile.RestAPIs;
+package TestFiles.RestAPIs;
 
 import io.restassured.response.Response;
 import org.testng.Assert;

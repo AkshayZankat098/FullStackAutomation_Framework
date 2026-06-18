@@ -1,4 +1,4 @@
-package StepDefinitionFile.GoogleForm;
+package TestFiles.GoogleForm;
 
 import org.testng.annotations.Test;
 import BaseTest.BaseTest;
