@@ -1,24 +1,15 @@
 package TestFiles.Practice;
 
+import java.util.ArrayList;
+
 public class Practics {
 
     public static void main(String[] args) {
 
-        String str = "Akshay";
+        int[] a = {10, 20, 30, 40, 50};
 
-        String reverse = "";
-
-        System.out.println(str.length());
-
-        for (int i = str.length(); i > 0; i--) {
-            reverse = reverse + str.charAt(i - 1);
+        for (int i = a.length - 1; i >= 0; i--) {
+            System.out.print(a[i] + " ");
         }
-        System.out.println(reverse);
-
-
-        StringBuilder sb = new StringBuilder(str);
-        String reversed01 = sb.reverse().toString();
-        System.out.println(reversed01);
     }
-
 }
