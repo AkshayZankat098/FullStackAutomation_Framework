@@ -6,6 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 
+import PageObjectFile.Abstract_Method;
 import PageObjectFile.Flipkart;
 import PageObjectFile.GmailCalendar;
 import PageObjectFile.GoogleForm;
@@ -17,10 +18,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 
-    // ✅ Accessible to child test classes
     public static WebDriver driver;
+
+    // ✅ Create Object of PageObject Classes
     protected Qkart Qkart;
     protected Flipkart flipkart;
+    protected Abstract_Method abstract_Method;
     protected GmailCalendar gmailCalendar;
     protected GoogleForm googleForm;
     protected LeetCode leetCode;
@@ -55,11 +58,13 @@ public class BaseTest {
         //✅ Initialize Page Object
         Qkart = new Qkart(driver);
         flipkart = new Flipkart(driver);
+        abstract_Method = new Abstract_Method(driver);
         gmailCalendar = new GmailCalendar(driver);
         googleForm = new GoogleForm(driver);
         leetCode = new LeetCode(driver);
         youTube = new YouTube(driver);
         practice = new Practice(driver);
+        
     }
     
     @AfterSuite(alwaysRun = true)

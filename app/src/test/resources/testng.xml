@@ -1,19 +1,17 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<!-- (When we have Java + Selenium + TestNG + Extent Reports + Gradle) If I want to run the step definition file, I need to keep this !-->
+<!-- (When we have Java + Selenium + TestNG + Gradle) If I want to run the step definition file, I need to keep this !-->
 
 <suite name="QkartAutomationSuite">
     <test name="LoginTests">
         <classes>
 
-            <class name="TestFiles.GmailCalendar.CalendarAutomation">
+            <class name="TestFiles.Flipkart.FlipkartTest">
 
                 <methods>
 
                     <include name="TestCase01"/>
-                    <include name="TestCase02"/>
-                    <include name="TestCase03"/>
-                    <include name="TestCase04"/>
+
 
                 </methods>
 

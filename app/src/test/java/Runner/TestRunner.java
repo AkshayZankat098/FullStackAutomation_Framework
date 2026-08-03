@@ -3,6 +3,9 @@ package Runner;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
+/*
+ Only need when we required to run via Cucumber 
+ */
 @CucumberOptions(
         features = "src/test/resources/Features",                   // ✅ Path to feature a file
         glue = {"TestFiles"},                              // ✅ Step definition package

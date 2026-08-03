@@ -40,7 +40,7 @@ public class Flipkart extends Abstract_Method {
 
     // Constructor
     public Flipkart(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 

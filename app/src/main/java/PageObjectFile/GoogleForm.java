@@ -48,7 +48,7 @@ public class GoogleForm extends Abstract_Method {
 
     // Constructor
     public GoogleForm(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
