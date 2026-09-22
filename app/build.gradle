@@ -57,6 +57,8 @@ dependencies {
 
     // Assertion matchers
     implementation 'org.hamcrest:hamcrest:2.2'
+    // ExcelReader is used by the test sources.
+    testImplementation 'org.apache.poi:poi-ooxml:5.4.1'
 }
 
 

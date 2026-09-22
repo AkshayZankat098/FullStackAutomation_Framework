@@ -6,14 +6,14 @@
     <test name="LoginTests">
         <classes>
 
-            <class name="TestFiles.Flipkart.FlipkartTest">
+            <class name="TestFiles.RestAssured_APIs.PreOrderMeals">
 
-                <methods>
+                <!-- <methods>
 
                     <include name="TestCase01"/>
 
 
-                </methods>
+                </methods> -->
 
             </class>
 
