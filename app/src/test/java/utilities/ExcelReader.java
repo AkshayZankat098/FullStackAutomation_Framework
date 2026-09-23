@@ -10,9 +10,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelReader {
 
     private static final String FILE_PATH =
-            "B:\\Akshay Automation\\SDET_Framework\\FullStackAutomation_Framework\\app\\src\\test\\resources\\TestData\\User Module APIs Test Cases.xlsx";
+            "B:\\Akshay Automation\\SDET_Framework\\FullStackAutomation_Framework\\app\\src\\test\\resources\\TestData\\Pre-Order Meals APIs Test Cases.xlsx";
 
-    private static final String SHEET_NAME = "Test Cases";
+    private static final String SHEET_NAME = "Test Cases GET";
 
     public static Object[][] getTestData() {
 
@@ -36,7 +36,7 @@ public class ExcelReader {
 
                 for (int i = 0; i < columns; i++) {
                     Cell cell = row.getCell(i);
-                    values[i] = cell == null ? "" : formatter.formatCellValue(cell);
+                    values[i] = cell == null ? "" : formatter.formatCellValue(cell).replace(",", "");
                 }
 
                 data.add(values);

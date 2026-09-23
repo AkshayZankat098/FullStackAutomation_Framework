@@ -3,52 +3,64 @@ package TestFiles.RestAssured_APIs;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
-import static io.restassured.RestAssured.given;
 import utilities.ExcelReader;
 
 public class PreOrderMeals {
 
+    String baseUri = "http://192.168.27.127";
+    String basePath = "/EVERTECT/api.svc/v2/pre-order-meal";
+
     RequestSpecification requestSpec =
                     given()
-                        .baseUri("http://192.168.27.132")
-                        .basePath("/cosec/api.svc/v2/user")
+                        .baseUri(baseUri)
+                        .basePath(basePath)
                         .auth()
-                        .basic("sa", "admin");
+                        .basic("Ak1", "admin");
 
-
-    // Call the ExcelReader getTestData method to get test data from the Excel file            
     @DataProvider(name = "userData")
     public Object[][] userData() {
             return ExcelReader.getTestData();
     }
 
-            
     @Test(dataProvider = "userData")
+    public void userCreateTest(
+            String TC_ID,
+            String action,
+            String userId,
+            String date,
+            String menuid,
+            String itemid,
+            String quantity,
+            String daterange,
+            String Scenario, 
+            String ExpectedResult
+    ) {
 
-        public void userCreateTest(String tcId, String action, String userId, String name, String expectedStatus, String scenario) {
+        String actionValue =
+                action
+                + ";user-id=" + userId
+                + ";date=" + date
+                + ";menu-id=" + menuid
+                + ";item-id=" + itemid
+                + ";quantity=" + quantity;
 
-            String actionValue = action + ";id=" + userId + ";name=" + name + ";";
+        Response response =
+                given()
+                    .spec(requestSpec)
+                    .urlEncodingEnabled(false)
+                    .queryParam("action", actionValue)
+                    .when()
+                    .get();
 
-                Response response =
-                        given()
-                            .spec(requestSpec)
-                            .urlEncodingEnabled(false)
-                            .queryParam("action", actionValue)
-                            .when()
-                            .post();
+        String ResponseMessage = response.getBody().asString();
+        System.out.println("Expected Message : " + ExpectedResult);
+        System.out.println("Actual Message : " + ResponseMessage);
+        System.out.println("API : " + Scenario + " : " +baseUri + basePath + "?action=" + actionValue);
 
-                System.out.println(tcId + " : " + response.asString());
-
-                Assert.assertEquals(
-                        response.statusCode(),
-                        Integer.parseInt(expectedStatus));
-
-                Assert.assertTrue(
-                        response.asString().contains("saved successfully"),
-                        "User creation failed: " + response.asString());
-            }
+        Assert.assertEquals(ResponseMessage, ExpectedResult, "Response mismatch for " + TC_ID);
+    }
 
 }
