@@ -2,7 +2,9 @@ package utilities;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -19,27 +21,35 @@ public class ExcelReader {
         try (Workbook wb = new XSSFWorkbook(new FileInputStream(FILE_PATH))) {
 
             Sheet sheet = wb.getSheet(SHEET_NAME);
-            DataFormatter formatter = new DataFormatter();
+            DataFormatter f = new DataFormatter();
 
-            int columns = sheet.getRow(0).getLastCellNum();
+            Row header = sheet.getRow(0);
+            int columns = header.getLastCellNum();
+
             List<Object[]> data = new ArrayList<>();
 
-            for (Row row : sheet) {
+            for (int r = 1; r <= sheet.getLastRowNum(); r++) {
 
-                if (row.getRowNum() == 0 ||
-                    row.getCell(0) == null ||
-                    formatter.formatCellValue(row.getCell(0)).trim().isEmpty()) {
+                Row row = sheet.getRow(r);
+                if (row == null || f.formatCellValue(row.getCell(0)).trim().isEmpty())
                     continue;
+
+                Map<String, String> map = new LinkedHashMap<>();
+
+                for (int c = 0; c < columns; c++) {
+
+                    String key = f.formatCellValue(header.getCell(c)).trim();
+
+                    if (!key.isEmpty()) {
+                        String value = row.getCell(c) == null
+                                ? ""
+                                : f.formatCellValue(row.getCell(c)).replace(",", "").trim();
+
+                        map.put(key, value);
+                    }
                 }
 
-                Object[] values = new Object[columns];
-
-                for (int i = 0; i < columns; i++) {
-                    Cell cell = row.getCell(i);
-                    values[i] = cell == null ? "" : formatter.formatCellValue(cell).replace(",", "");
-                }
-
-                data.add(values);
+                data.add(new Object[]{map});
             }
 
             return data.toArray(new Object[0][]);
